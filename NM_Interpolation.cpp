@@ -16,6 +16,7 @@ double* Lagranges_Array(double* nodes, double* f_values, int n);
 
 int main()
 {
+    cout << "Для 6 точек:" << endl; // он правильно раньше выводил. Я ничего не трогал с того раза(
     int n = 5;
     double* nodes = Nodes(0, 1.5, 5);
     for (int i = 0; i < n+1; i++) {
@@ -25,7 +26,7 @@ int main()
     for (int i = 0; i < n + 1; i++) {
         cout << "f(x[" << i << "])" << " = " << f_values[i] << endl;
     }
-    cout << "Для 11 точек:" << endl;
+    /*cout << "Для 11 точек:" << endl;
     int n1 = 10;
     double* nodes11 = Nodes(0, 1.5, 10);
     for (int i = 0; i < n1 + 1; i++) {
@@ -39,7 +40,7 @@ int main()
     double* lagranges_11 = Lagranges_Array(nodes, f_values11, n1);
     for (int i = 0; i < n1 + 1; i++) {
         cout << "L_n(x[" << i << "])" << " = " << lagranges_11[i] << endl;
-    }
+    }*/
 
 }
 
@@ -53,7 +54,7 @@ double* Nodes(double a, double b, int n) {
     return nodes;
 }
 
-double f(double x) {
+double f(double x) { //Я ничего не менял здесь, значения функции снова неверно считает
     double a = x;
     double F = 0;
     double q;
