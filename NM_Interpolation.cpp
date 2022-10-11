@@ -16,31 +16,33 @@ double* Lagranges_Array(double* nodes, double* f_values, int n);
 
 int main()
 {
-    cout << "Для 6 точек:" << endl; // он правильно раньше выводил. Я ничего не трогал с того раза(
+    cout << "For 6 nodes:" << endl; 
     int n = 5;
     double* nodes = Nodes(0, 1.5, 5);
     for (int i = 0; i < n+1; i++) {
         cout << "x[" << i << "]" << " = " << nodes[i] << endl;
     }
+    cout << "Function value at 6 nodes:" << endl;
     double* f_values = F_values(nodes, 5);
     for (int i = 0; i < n + 1; i++) {
         cout << "f(x[" << i << "])" << " = " << f_values[i] << endl;
     }
-    /*cout << "Для 11 точек:" << endl;
+    cout << "For 11 points:" << endl;
     int n1 = 10;
     double* nodes11 = Nodes(0, 1.5, 10);
     for (int i = 0; i < n1 + 1; i++) {
         cout << "x[" << i << "]" << " = " << nodes11[i] << endl;
     }
+    cout << "Function value at 11 nodes:" << endl;
     double* f_values11 = F_values(nodes11, 10);
     for (int i = 0; i < n1 + 1; i++) {
         cout << "f(x[" << i << "])" << " = " << f_values11[i] << endl;
     }
-    cout << "Значение интерполяционного полинома Лагранжа в 11 точках:" << endl;
+    cout << "The Lagrange interpolation polynomial at 11 points:" << endl;
     double* lagranges_11 = Lagranges_Array(nodes, f_values11, n1);
     for (int i = 0; i < n1 + 1; i++) {
-        cout << "L_n(x[" << i << "])" << " = " << lagranges_11[i] << endl;
-    }*/
+        cout << "L_n(x[" << i << "])" << " = " <<lagranges_11[i] << endl;
+    }
 
 }
 
@@ -58,11 +60,10 @@ double f(double x) { //Я ничего не менял здесь, значен�
     double a = x;
     double F = 0;
     double q;
-    int n = 1;
-    double a_n = 1;
+    int n = 0;
     do {
         F += a;
-        q = ((-1) * (M_PI) * (M_PI) * (4 * n + 1) * x * x * x * x) / (( n + 1) * (2 * n + 1) * (4 * n + 5))/8;
+        q = ((-1) * (M_PI/2) * (M_PI/2) * (4 * n + 1) * x * x * x * x) / ((n + 1) * (2 * n + 1) * (4 * n + 5))/2;
         a = a * q;
         n++;
     } while (abs(a) >= 0.000001);
@@ -93,7 +94,7 @@ double Lagrange(double* nodes, double* f_values, double t, int n) {
 double* Lagranges_Array(double* nodes, double* f_values, int n) {
     double* langranges_11 = new double[n + 1];
     for (int i = 0; i < n + 1; i++) {
-        double lnx = Lagrange(nodes, f_values, nodes[i], n);
+        double lnx = (float)Lagrange(nodes, f_values, nodes[i], n);
         langranges_11[i] = lnx;
     }
     return langranges_11;
