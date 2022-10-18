@@ -8,7 +8,7 @@ double* Nodes(double a, double b, int n);
 double f(double x);
 double* F_values(double* nodes, int n);
 double Lagrange(double* nodes, double* f_values, double t, int n);
-double* Lagranges_Array(double* nodes, double* f_values, int n);
+double* Lagranges_Array(double* nodes, double* f_values, int n,int nyzlov);
 
 
 #define M_PI           double(3.14159265358979323846)
@@ -38,9 +38,10 @@ int main()
     for (int i = 0; i < n1 + 1; i++) {
         cout << "f(x[" << i << "])" << " = " << f_values11[i] << endl;
     }
+    int coltoch = 11;
     cout << "The Lagrange interpolation polynomial at 6 points:" << endl;
-    double* lagranges_11 = Lagranges_Array(nodes, f_values, n);
-    for (int i = 0; i < n + 1; i++) {
+    double* lagranges_11 = Lagranges_Array(nodes, f_values, coltoch,n+1);
+    for (int i = 0; i < coltoch; i++) {
         cout << "L_n(x[" << i << "])" << " = " <<lagranges_11[i] << endl;
     }
 
@@ -93,11 +94,11 @@ double Lagrange(double* nodes, double* f_values, double t, int n) {
     return sum;
 }
 
-double* Lagranges_Array(double* nodes, double* f_values, int n) {
-
-    double* langranges_11 = new double[n + 1];
-    for (int i = 0; i < n + 1; i++) {
-        double lnx = Lagrange(nodes, f_values, nodes[i], n);
+double* Lagranges_Array(double* nodes, double* f_values, int coltoch,int colyzlov) {
+    double h = (double)(1.5 - 0) / (coltoch - 1);
+    double* langranges_11 = new double[coltoch];
+    for (int i = 0; i < coltoch; i++) {
+        double lnx = Lagrange(nodes, f_values, 0+i*h, colyzlov);
         langranges_11[i] = lnx;
     }
     return langranges_11;
