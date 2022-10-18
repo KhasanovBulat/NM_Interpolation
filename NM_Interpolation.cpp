@@ -63,15 +63,15 @@ double* Nodes(double a, double b, int n) {
 
 double f(double x) { //Я ничего не менял здесь, значения функции снова неверно считает
     double a = x;
-    double F = 0;
+    double F = a;
     double q;
-    int n = 1;
-    do {
-        F += a;
-        q = ((-1) * (M_PI/2) * (M_PI/2) * (4 * n + 1) * x * x * x * x) / ((n + 1) * (2 * n + 1) * (4 * n + 5))/2;
+    int n = 0;
+    while (abs(a) >= 0.000001) {
+        q = ((-1) * (M_PI / 2) * (M_PI / 2) * (4 * n + 1) * x * x * x * x) / ((2 * n + 2) * (2 * n + 1) * (4 * n + 5));
         a = a * q;
+        F += a;
         n++;
-    } while (abs(a) >= 0.000001);
+    }
     return F;
 }
 
