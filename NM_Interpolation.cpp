@@ -44,6 +44,10 @@ int main()
     for (int i = 0; i < coltoch; i++) {
         cout << "L_n(x[" << i << "])" << " = " <<lagranges_11[i] << endl;
     }
+    cout << "Maximalnaya pogreshost'" << endl;
+    for (int i = 0; i < coltoch; i++) {
+        cout << "L_n(x[" << i << "])"<< "-" << "f(x[" << i << "])"<< "=" << abs(lagranges_11[i]-f_values11[i]) << endl;
+    }
 
 }
 
